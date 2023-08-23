@@ -1,0 +1,43 @@
+﻿@model Entity.Models.student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sstd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sstd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ssec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ssec)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Sid }) |
+    @Html.ActionLink("Back to List", "Display")
+</p>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Entity.Models.student>
+
+@{
+    ViewBag.Title = "Display";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Display</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sstd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ssec)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sstd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ssec)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Sid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Sid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Sid })
+        </td>
+    </tr>
+}
+
+</table>

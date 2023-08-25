@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Task2Referencial.Models.Trainee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tprofile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TDomainid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tprofile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TDomainid)
+        </td>
+        <td>
+            @if (item.Tprofile != null)
+            {
+                <img src="data:image;base64,@Convert.ToBase64String(@item.Tprofile)" width="70" class="rounded-pill" />
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Tid }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Tid }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Tid })
+        </td>
+    </tr>
+}
+
+</table>

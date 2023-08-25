@@ -1,0 +1,44 @@
+﻿@model Task2Referencial.Models.Trainee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trainee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tprofile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tprofile)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Training.Dname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Training.Dname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Tid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -16,7 +16,7 @@ namespace Task2Referencial
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Trainee", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

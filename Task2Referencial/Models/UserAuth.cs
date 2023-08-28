@@ -12,14 +12,10 @@ namespace Task2Referencial.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Trainee
+    public partial class UserAuth
     {
-        public int Tid { get; set; }
-        public string Tname { get; set; }
-        public byte[] Tprofile { get; set; }
-
-        public Nullable<int> TDomainid { get; set; }
-    
-        public virtual Training Training { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string UserRole { get; set; }
     }
 }

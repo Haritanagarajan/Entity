@@ -12,7 +12,14 @@ namespace Task2Referencial.Controllers
     //model  Trainees
     public class TrainingController : Controller
     {
-        MvcDatabaseEntities1 MvcDatabaseEntities1 = new MvcDatabaseEntities1(); 
+        MvcDatabaseEntities1 MvcDatabaseEntities1 = new MvcDatabaseEntities1();
+
+        public ActionResult View1()
+        {
+            List<Training> training = MvcDatabaseEntities1.Trainings.ToList();
+
+            return View(training);
+        }
         // GET: Training
         public ActionResult Index()
         {

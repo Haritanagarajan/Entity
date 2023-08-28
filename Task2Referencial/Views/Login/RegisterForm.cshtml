@@ -1,0 +1,40 @@
+﻿@model Task2Referencial.Models.UserAuth
+@{
+    ViewBag.Title = "RegisterForm";
+    Layout = "~/Views/Shared/View1.cshtml";
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header">
+            <h2>RegisterForm</h2>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="form-group">
+            @Html.LabelFor(n => n.UserId)
+            @Html.TextBoxFor(n => n.UserId, new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.UserId)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(n => n.UserName)
+            @Html.TextBoxFor(n => n.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.UserName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(n => n.UserRole)
+            @Html.TextBoxFor(n => n.UserRole, new { @class = "form-control" })
+            @Html.ValidationMessageFor(n => n.UserRole)
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success rounded-0">Submit</button>
+            @Html.ActionLink("Already have an account", "LoginForm")
+        </div>
+    </div>
+
+}

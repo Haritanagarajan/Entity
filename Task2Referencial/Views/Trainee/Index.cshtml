@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -29,18 +28,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.Tname)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Tprofile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TDomainid)
-        </td>
+        </td>*@
         <td>
             @if (item.Tprofile != null)
             {
-                <img src="data:image;base64,@Convert.ToBase64String(@item.Tprofile)" width="70" class="rounded-pill" />
-            }
+          <img src="data:image;base64,@Convert.ToBase64String(item.Tprofile)" alt="Employee Image" width="70"/>
+         }
         </td>
+
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.TDomainid)
+        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Tid }) |
             @Html.ActionLink("Details", "Details", new { id = item.Tid }) |

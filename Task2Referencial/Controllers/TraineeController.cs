@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Task2Referencial.Models;
 
 namespace Task2Referencial.Controllers
@@ -114,12 +115,16 @@ namespace Task2Referencial.Controllers
         }
 
 
-
         [HttpGet]
         public ActionResult Details(int? id)
         {
             Trainee trainee = MvcDatabaseEntities4.Trainees.Find(id);
             return View(trainee);
+        }
+        public ActionResult LogoutForm()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("LoginForm", "Login");
         }
     }
 }

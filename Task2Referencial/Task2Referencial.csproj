@@ -270,10 +270,8 @@
     <Content Include="Views\Training\Delete.cshtml" />
     <Content Include="Views\Login\LoginForm.cshtml" />
     <Content Include="Views\Login\RegisterForm.cshtml" />
-    <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Trainee\View1.cshtml" />
     <Content Include="Views\Training\View1.cshtml" />
-    <Content Include="Views\Shared\View1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

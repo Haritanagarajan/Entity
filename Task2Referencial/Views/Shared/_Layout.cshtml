@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -15,12 +16,26 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Trainee", "Index", "Trainee", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Trainer", "Index", "Training", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @Html.ActionLink("Logout", "LogoutForm","Trainee", null, new { @class = "nav-link text-center" })
+                    </ul>
+                </div>
+            }
+            else
+            {
+
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Trainee", "Index", "Trainee", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Trainer", "Index", "Training", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
+            }
+
         </div>
     </nav>
     <div class="container body-content">

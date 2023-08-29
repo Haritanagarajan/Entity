@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MvcDatabaseModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="TRoleid" />
+          </Key>
+          <Property Name="TRoleid" Type="int" Nullable="false" />
+          <Property Name="TRolename" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="TUserid" />
+          </Key>
+          <Property Name="TUserid" Type="int" Nullable="false" />
+          <Property Name="TUsername" Type="varchar" MaxLength="20" />
+          <Property Name="TRoleid" Type="int" />
+        </EntityType>
+        <Association Name="FK__UserTable__TRole__1AD3FDA4">
+          <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="TRoleid" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="TRoleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MvcDatabaseModel2StoreContainer">
+          <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__UserTable__TRole__1AD3FDA4" Association="Self.FK__UserTable__TRole__1AD3FDA4">
+            <End Role="RoleTable" EntitySet="RoleTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MvcDatabaseModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="TRoleid" />
+          </Key>
+          <Property Name="TRoleid" Type="Int32" Nullable="false" />
+          <Property Name="TRolename" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTables" Relationship="Self.FK__UserTable__TRole__1AD3FDA4" FromRole="RoleTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="TUserid" />
+          </Key>
+          <Property Name="TUserid" Type="Int32" Nullable="false" />
+          <Property Name="TUsername" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TRoleid" Type="Int32" />
+          <NavigationProperty Name="RoleTable" Relationship="Self.FK__UserTable__TRole__1AD3FDA4" FromRole="UserTable" ToRole="RoleTable" />
+        </EntityType>
+        <Association Name="FK__UserTable__TRole__1AD3FDA4">
+          <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="TRoleid" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="TRoleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MvcDatabaseEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RoleTables" EntityType="Self.RoleTable" />
+          <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK__UserTable__TRole__1AD3FDA4" Association="Self.FK__UserTable__TRole__1AD3FDA4">
+            <End Role="RoleTable" EntitySet="RoleTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MvcDatabaseModel2StoreContainer" CdmEntityContainer="MvcDatabaseEntities5">
+          <EntitySetMapping Name="RoleTables">
+            <EntityTypeMapping TypeName="MvcDatabaseModel2.RoleTable">
+              <MappingFragment StoreEntitySet="RoleTable">
+                <ScalarProperty Name="TRoleid" ColumnName="TRoleid" />
+                <ScalarProperty Name="TRolename" ColumnName="TRolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="MvcDatabaseModel2.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="TUserid" ColumnName="TUserid" />
+                <ScalarProperty Name="TUsername" ColumnName="TUsername" />
+                <ScalarProperty Name="TRoleid" ColumnName="TRoleid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

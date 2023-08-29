@@ -10,9 +10,10 @@ namespace Task2Referencial.Controllers
 {
     //database MvcDatabaseEntities2
     //Model UserAuths
+   
     public class LoginController : Controller
     {
-      private readonly  MvcDatabaseEntities2 _mvc2 = new MvcDatabaseEntities2();
+        private readonly MvcDatabaseEntities2 _mvc2 = new MvcDatabaseEntities2();
 
         // GET: Login
         [HttpGet]
@@ -24,19 +25,19 @@ namespace Task2Referencial.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LoginForm(UserAuth user)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 bool IsValidUser = _mvc2.UserAuths
-                .Any(u=>u.UserName.ToLower() == user.UserName.ToLower() && user .UserRole == user.UserRole);
-               if (IsValidUser)
+                .Any(u => u.UserName.ToLower() == user.UserName.ToLower() && user.UserRole == user.UserRole);
+                if (IsValidUser)
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, false);    
-                    if(user.UserRole == "Admin")
+                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    if (user.UserRole == "Admin")
                     {
                         return RedirectToAction("View1", "Trainee");
 
                     }
-                    else if(user.UserRole == "User")
+                    else if (user.UserRole == "User")
                     {
                         return RedirectToAction("View1", "Training");
 
@@ -56,10 +57,8 @@ namespace Task2Referencial.Controllers
             ModelState.AddModelError("", "Invalid Username and UserRole");
             return View();
         }
-        public ActionResult LogoutForm()
-        {
-            return View();
-        }
+       
+
         [HttpGet]
         public ActionResult RegisterForm()
         {

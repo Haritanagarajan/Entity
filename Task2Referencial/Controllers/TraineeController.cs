@@ -19,15 +19,18 @@ namespace Task2Referencial.Controllers
         MvcDatabaseEntities4 MvcDatabaseEntities4 = new MvcDatabaseEntities4();
 
 
-
-        public ActionResult View1()
+        [AllowAnonymous]
+        public ActionResult View1(UserTable usertable)
         {
+           
             List<Trainee> trainees = MvcDatabaseEntities4.Trainees.ToList();
 
             return View(trainees);
         }
 
         // GET: Trainee
+
+        [Authorize(Roles = "Admin")]
 
         public ActionResult Index()
         {

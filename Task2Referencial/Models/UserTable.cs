@@ -19,5 +19,6 @@ namespace Task2Referencial.Models
         public Nullable<int> TRoleid { get; set; }
     
         public virtual RoleTable RoleTable { get; set; }
+        public object RememberMe { get; internal set; }
     }
 }

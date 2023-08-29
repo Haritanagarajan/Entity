@@ -24,7 +24,12 @@ namespace Task2Referencial.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
+        internal RoleUserConnect ValidateUser(string username, int? roleid)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual DbSet<RoleTable> RoleTables { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
     }

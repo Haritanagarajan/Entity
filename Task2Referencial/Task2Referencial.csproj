@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RoleBasedController.cs" />
     <Compile Include="Controllers\TraineeController.cs" />
     <Compile Include="Controllers\TrainingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -150,6 +151,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DomainofTrainee.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\RoleBasedAccess.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RoleBasedAccess.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleBasedAccess.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RoleBasedAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleBasedAccess.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RoleBasedAccess.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleTable.cs">
+      <DependentUpon>RoleBasedAccess.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoleUserConnect.cs" />
     <Compile Include="Models\Trainee.cs">
       <DependentUpon>DomainofTrainee.tt</DependentUpon>
     </Compile>
@@ -173,6 +193,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserTable.cs">
+      <DependentUpon>RoleBasedAccess.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -206,6 +229,16 @@
       <DependentUpon>DomainofTrainee.edmx</DependentUpon>
       <LastGenOutput>DomainofTrainee.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\RoleBasedAccess.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RoleBasedAccess.edmx</DependentUpon>
+      <LastGenOutput>RoleBasedAccess.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RoleBasedAccess.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RoleBasedAccess.edmx</DependentUpon>
+      <LastGenOutput>RoleBasedAccess.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\UserModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UserModel.edmx</DependentUpon>
@@ -235,6 +268,13 @@
     </EntityDeploy>
     <Content Include="Models\DomainofTrainee.edmx.diagram">
       <DependentUpon>DomainofTrainee.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\RoleBasedAccess.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RoleBasedAccess.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RoleBasedAccess.edmx.diagram">
+      <DependentUpon>RoleBasedAccess.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -275,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\RoleBased\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

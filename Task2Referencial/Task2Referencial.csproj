@@ -198,8 +198,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\DomainofTrainee.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainofTrainee.Context.cs</LastGenOutput>
       <DependentUpon>DomainofTrainee.edmx</DependentUpon>
+      <LastGenOutput>DomainofTrainee.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\DomainofTrainee.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -222,19 +222,19 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DomainofTrainee.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DomainofTrainee.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DomainofTrainee.edmx.diagram">
-      <DependentUpon>DomainofTrainee.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\UserModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\UserModel.edmx.diagram">
       <DependentUpon>UserModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\DomainofTrainee.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DomainofTrainee.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DomainofTrainee.edmx.diagram">
+      <DependentUpon>DomainofTrainee.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

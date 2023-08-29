@@ -8,22 +8,24 @@ using Task2Referencial.Models;
 
 namespace Task2Referencial.Controllers
 {
+    [Authorize]
+
     //database MvcDatabaseEntities1
     //model  Trainees
     public class TrainingController : Controller
     {
-        MvcDatabaseEntities1 MvcDatabaseEntities1 = new MvcDatabaseEntities1();
+        MvcDatabaseEntities4 MvcDatabaseEntities4 = new MvcDatabaseEntities4();
 
         public ActionResult View1()
         {
-            List<Training> training = MvcDatabaseEntities1.Trainings.ToList();
+            List<Training> training = MvcDatabaseEntities4.Trainings.ToList();
 
             return View(training);
         }
         // GET: Training
         public ActionResult Index()
         {
-            List<Training> training = MvcDatabaseEntities1.Trainings.ToList();
+            List<Training> training = MvcDatabaseEntities4.Trainings.ToList();
 
             return View(training);
         }
@@ -31,7 +33,7 @@ namespace Task2Referencial.Controllers
         [HttpGet]
         public ActionResult Create(int? id)
         {
-            Training training = MvcDatabaseEntities1.Trainings.Find(id);
+            Training training = MvcDatabaseEntities4.Trainings.Find(id);
             return View(training);
         }
 
@@ -40,8 +42,8 @@ namespace Task2Referencial.Controllers
         {
             if (ModelState.IsValid)
             {
-                MvcDatabaseEntities1.Trainings.Add(training);
-                MvcDatabaseEntities1.SaveChanges();
+                MvcDatabaseEntities4.Trainings.Add(training);
+                MvcDatabaseEntities4.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
@@ -50,17 +52,17 @@ namespace Task2Referencial.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            Training training = MvcDatabaseEntities1.Trainings.Find(id);
+            Training training = MvcDatabaseEntities4.Trainings.Find(id);
             return View(training);
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include ="Did,Dname,IsDeleted")] Training training)
+        public ActionResult Edit([Bind(Include = "Did,Dname,IsDeleted")] Training training)
         {
             if (ModelState.IsValid)
             {
-                MvcDatabaseEntities1.Entry(training).State = EntityState.Modified;
-                MvcDatabaseEntities1.SaveChanges();
+                MvcDatabaseEntities4.Entry(training).State = EntityState.Modified;
+                MvcDatabaseEntities4.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -70,24 +72,24 @@ namespace Task2Referencial.Controllers
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            Training training = MvcDatabaseEntities1.Trainings.Find(id);
+            Training training = MvcDatabaseEntities4.Trainings.Find(id);
             return View(training);
         }
 
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            Training tr = MvcDatabaseEntities1.Trainings.Find(id);
-            MvcDatabaseEntities1.Trainings.Remove(tr);
-            MvcDatabaseEntities1.SaveChanges();
+            Training tr = MvcDatabaseEntities4.Trainings.Find(id);
+            MvcDatabaseEntities4.Trainings.Remove(tr);
+            MvcDatabaseEntities4.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult Details(int? id)
         {
-            Training training = MvcDatabaseEntities1.Trainings.Find(id);
+            Training training = MvcDatabaseEntities4.Trainings.Find(id);
             return View(training);
         }
     }

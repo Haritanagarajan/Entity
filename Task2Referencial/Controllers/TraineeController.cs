@@ -10,17 +10,18 @@ using Task2Referencial.Models;
 
 namespace Task2Referencial.Controllers
 {
+    [Authorize]
     //database   MvcDatabaseEntities1 
     //Model Trainees
     public class TraineeController : Controller
     {
-        MvcDatabaseEntities1 MvcDatabaseEntities1 = new MvcDatabaseEntities1();
+        MvcDatabaseEntities4 MvcDatabaseEntities4 = new MvcDatabaseEntities4();
 
 
 
         public ActionResult View1()
         {
-            List<Trainee> trainees = MvcDatabaseEntities1.Trainees.ToList();
+            List<Trainee> trainees = MvcDatabaseEntities4.Trainees.ToList();
 
             return View(trainees);
         }
@@ -29,7 +30,7 @@ namespace Task2Referencial.Controllers
 
         public ActionResult Index()
         {
-            List<Trainee> trainees = MvcDatabaseEntities1.Trainees.ToList();
+            List<Trainee> trainees = MvcDatabaseEntities4.Trainees.ToList();
 
             return View(trainees);
         }
@@ -38,8 +39,8 @@ namespace Task2Referencial.Controllers
 
         public ActionResult Create()
         {
-            List<Training> trainings = MvcDatabaseEntities1.Trainings.ToList();
-            ViewBag.Trainings = new SelectList(trainings, "Did", "Dname"); 
+            List<Training> trainings = MvcDatabaseEntities4.Trainings.ToList();
+            ViewBag.Trainings = new SelectList(trainings, "Did", "Dname");
             return View();
         }
 
@@ -56,8 +57,8 @@ namespace Task2Referencial.Controllers
                     profile = reader.ReadBytes(Tprofile.ContentLength);
                 }
                 trainee.Tprofile = profile;
-                MvcDatabaseEntities1.Trainees.Add(trainee);
-                MvcDatabaseEntities1.SaveChanges();
+                MvcDatabaseEntities4.Trainees.Add(trainee);
+                MvcDatabaseEntities4.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
@@ -65,13 +66,13 @@ namespace Task2Referencial.Controllers
 
         public ActionResult Edit(int? id)
         {
-            Trainee trainee = MvcDatabaseEntities1.Trainees.Find(id);
-            List<Training> trainings = MvcDatabaseEntities1.Trainings.ToList();
+            Trainee trainee = MvcDatabaseEntities4.Trainees.Find(id);
+            List<Training> trainings = MvcDatabaseEntities4.Trainings.ToList();
             ViewBag.Trainings = new SelectList(trainings, "Did", "Dname");
             return View(trainee);
         }
         [HttpPost]
-        public ActionResult Edit(HttpPostedFileBase Tprofile,[Bind(Include = "Tid,Tname,TDomainid")] Trainee trainee)
+        public ActionResult Edit(HttpPostedFileBase Tprofile, [Bind(Include = "Tid,Tname,TDomainid")] Trainee trainee)
         {
             if (ModelState.IsValid)
             {
@@ -83,8 +84,8 @@ namespace Task2Referencial.Controllers
                 }
 
                 trainee.Tprofile = profile;
-                MvcDatabaseEntities1.Entry(trainee).State = EntityState.Modified;
-                MvcDatabaseEntities1.SaveChanges();
+                MvcDatabaseEntities4.Entry(trainee).State = EntityState.Modified;
+                MvcDatabaseEntities4.SaveChanges();
                 return RedirectToAction("Index");
 
             }
@@ -93,12 +94,12 @@ namespace Task2Referencial.Controllers
         }
 
 
-      
+
 
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            Trainee trainee = MvcDatabaseEntities1.Trainees.Find(id);
+            Trainee trainee = MvcDatabaseEntities4.Trainees.Find(id);
             return View(trainee);
         }
 
@@ -106,22 +107,18 @@ namespace Task2Referencial.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            Trainee tr = MvcDatabaseEntities1.Trainees.Find(id);
-            MvcDatabaseEntities1.Trainees.Remove(tr);
-            MvcDatabaseEntities1.SaveChanges();
+            Trainee tr = MvcDatabaseEntities4.Trainees.Find(id);
+            MvcDatabaseEntities4.Trainees.Remove(tr);
+            MvcDatabaseEntities4.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
-
-
 
 
 
         [HttpGet]
         public ActionResult Details(int? id)
         {
-            Trainee trainee = MvcDatabaseEntities1.Trainees.Find(id);
+            Trainee trainee = MvcDatabaseEntities4.Trainees.Find(id);
             return View(trainee);
         }
     }

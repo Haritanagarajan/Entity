@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MvcDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MvcDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Trainee">
           <Key>
             <PropertyRef Name="Tid" />
@@ -44,27 +44,11 @@
             <End Role="Trainee" EntitySet="Trainee" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MvcDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Training">
-          <Key>
-            <PropertyRef Name="Did" />
-          </Key>
-          <Property Name="Did" Type="Int32" Nullable="false" />
-          <Property Name="Dname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Trainees" Relationship="MvcDatabaseModel.FK_Trainee_TDomainid" FromRole="Training" ToRole="Trainee" />
-        </EntityType>
-        <EntityContainer Name="MvcDatabaseEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Trainings" EntityType="Self.Training" />
-          <EntitySet Name="Trainees" EntityType="MvcDatabaseModel.Trainee" />
-          <AssociationSet Name="FK_Trainee_TDomainid" Association="MvcDatabaseModel.FK_Trainee_TDomainid">
-            <End Role="Training" EntitySet="Trainings" />
-            <End Role="Trainee" EntitySet="Trainees" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Trainee">
           <Key>
             <PropertyRef Name="Tid" />
@@ -73,13 +57,22 @@
           <Property Name="Tname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Tprofile" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TDomainid" Type="Int32" />
-          <NavigationProperty Name="Training" Relationship="MvcDatabaseModel.FK_Trainee_TDomainid" FromRole="Trainee" ToRole="Training" />
+          <NavigationProperty Name="Training" Relationship="Self.FK_Trainee_TDomainid" FromRole="Trainee" ToRole="Training" />
+        </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="Int32" Nullable="false" />
+          <Property Name="Dname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Trainees" Relationship="Self.FK_Trainee_TDomainid" FromRole="Training" ToRole="Trainee" />
         </EntityType>
         <Association Name="FK_Trainee_TDomainid">
-          <End Type="MvcDatabaseModel.Training" Role="Training" Multiplicity="0..1">
+          <End Role="Training" Type="Self.Training" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="MvcDatabaseModel.Trainee" Role="Trainee" Multiplicity="*" />
+          <End Role="Trainee" Type="Self.Trainee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Training">
               <PropertyRef Name="Did" />
@@ -89,28 +82,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="MvcDatabaseEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Trainees" EntityType="Self.Trainee" />
+          <EntitySet Name="Trainings" EntityType="Self.Training" />
+          <AssociationSet Name="FK_Trainee_TDomainid" Association="Self.FK_Trainee_TDomainid">
+            <End Role="Training" EntitySet="Trainings" />
+            <End Role="Trainee" EntitySet="Trainees" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MvcDatabaseModelStoreContainer" CdmEntityContainer="MvcDatabaseEntities1">
-          <EntitySetMapping Name="Trainings">
-            <EntityTypeMapping TypeName="MvcDatabaseModel.Training">
-              <MappingFragment StoreEntitySet="Training">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Did" ColumnName="Did" />
-                <ScalarProperty Name="Dname" ColumnName="Dname" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="MvcDatabaseModelStoreContainer" CdmEntityContainer="MvcDatabaseEntities4">
           <EntitySetMapping Name="Trainees">
             <EntityTypeMapping TypeName="MvcDatabaseModel.Trainee">
               <MappingFragment StoreEntitySet="Trainee">
-                <ScalarProperty Name="TDomainid" ColumnName="TDomainid" />
-                <ScalarProperty Name="Tprofile" ColumnName="Tprofile" />
-                <ScalarProperty Name="Tname" ColumnName="Tname" />
                 <ScalarProperty Name="Tid" ColumnName="Tid" />
+                <ScalarProperty Name="Tname" ColumnName="Tname" />
+                <ScalarProperty Name="Tprofile" ColumnName="Tprofile" />
+                <ScalarProperty Name="TDomainid" ColumnName="TDomainid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainings">
+            <EntityTypeMapping TypeName="MvcDatabaseModel.Training">
+              <MappingFragment StoreEntitySet="Training">
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="Dname" ColumnName="Dname" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

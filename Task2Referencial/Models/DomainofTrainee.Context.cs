@@ -13,10 +13,10 @@ namespace Task2Referencial.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MvcDatabaseEntities1 : DbContext
+    public partial class MvcDatabaseEntities4 : DbContext
     {
-        public MvcDatabaseEntities1()
-            : base("name=MvcDatabaseEntities1")
+        public MvcDatabaseEntities4()
+            : base("name=MvcDatabaseEntities4")
         {
         }
     
@@ -25,7 +25,7 @@ namespace Task2Referencial.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<Trainee> Trainees { get; set; }
+        public virtual DbSet<Training> Trainings { get; set; }
     }
 }

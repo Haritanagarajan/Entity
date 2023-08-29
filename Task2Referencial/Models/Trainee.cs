@@ -17,7 +17,6 @@ namespace Task2Referencial.Models
         public int Tid { get; set; }
         public string Tname { get; set; }
         public byte[] Tprofile { get; set; }
-
         public Nullable<int> TDomainid { get; set; }
     
         public virtual Training Training { get; set; }

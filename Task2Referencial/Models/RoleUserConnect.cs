@@ -5,9 +5,10 @@ using System.Web;
 
 namespace Task2Referencial.Models
 {
-    public class RoleUserConnect
+    public partial class RoleUserConnect
     {
         public Nullable<int> UserId { get; set; }
         public string Roles { get; set; }
     }
 }
+

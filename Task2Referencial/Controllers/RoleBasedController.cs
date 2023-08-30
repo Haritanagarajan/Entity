@@ -3,87 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Task2Referencial.Models;
 
 namespace Task2Referencial.Controllers
 {
     public class RoleBasedController : Controller
     {
-        // GET: RoleBased
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: RoleBased/Details/5
-        public ActionResult Details(int id)
+        [Authorize]
+        public new ActionResult Profile()
         {
             return View();
         }
 
-        // GET: RoleBased/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: RoleBased/Create
+        // GET: RoleBased
+     
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [AllowAnonymous]
+        public ActionResult Index(UserTable user)
         {
-            try
+            MvcDatabaseEntities5 usertabledatabase = new MvcDatabaseEntities5();
+            RoleUserConnect roleUser = new RoleUserConnect();
+           roleUser = usertabledatabase.ValidateUser(user.TUsername, user.TPassword).FirstOrDefault();  
+            string message = string.Empty;
+            switch (roleUser.UserId.Value)
             {
-                // TODO: Add insert logic here
+                case -1:
+                    message = "Username and/or password is incorrect.";
+                    break;
+                case -2:
+                    message = "Account has not been activated.";
+                    break;
+                default:
+                    
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.TUsername, DateTime.Now, DateTime.Now.AddMinutes(30), user.RememberMe,roleUser.Roles, FormsAuthentication.FormsCookiePath);
+                    string hash = FormsAuthentication.Encrypt(ticket);
+                    HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+                
+                    if (ticket.IsPersistent)
+                    {
+                        cookie.Expires = ticket.Expiration;
+                    }
+                    Response.Cookies.Add(cookie);
+                    return RedirectToAction("Profile");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewBag.Message = message;
+            return View(user);
         }
 
-        // GET: RoleBased/Edit/5
-        public ActionResult Edit(int id)
+        [Authorize(Roles = "Admin")]
+        public ActionResult UserDetails()
         {
-            return View();
+            MvcDatabaseEntities5 usertabledatabase = new MvcDatabaseEntities5();
+            List<UserTable> users = usertabledatabase.UserTables.ToList();
+            return View(users);
         }
 
-        // POST: RoleBased/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        //[HttpPost]
+        //[Authorize]
+        public ActionResult Logout()
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: RoleBased/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: RoleBased/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }

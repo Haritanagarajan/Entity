@@ -19,8 +19,7 @@ namespace Task2Referencial.Controllers
         MvcDatabaseEntities4 MvcDatabaseEntities4 = new MvcDatabaseEntities4();
 
 
-        [AllowAnonymous]
-        public ActionResult View1(UserTable usertable)
+        public ActionResult View1()
         {
            
             List<Trainee> trainees = MvcDatabaseEntities4.Trainees.ToList();

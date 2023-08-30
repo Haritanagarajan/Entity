@@ -17,8 +17,9 @@ namespace Task2Referencial.Models
         public int TUserid { get; set; }
         public string TUsername { get; set; }
         public Nullable<int> TRoleid { get; set; }
-    
+        public string TPassword { get; set; }
+        public bool RememberMe { get; set; }
+
         public virtual RoleTable RoleTable { get; set; }
-        public object RememberMe { get; internal set; }
     }
 }

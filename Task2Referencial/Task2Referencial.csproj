@@ -312,10 +312,12 @@
     <Content Include="Views\Login\RegisterForm.cshtml" />
     <Content Include="Views\Trainee\View1.cshtml" />
     <Content Include="Views\Training\View1.cshtml" />
+    <Content Include="Views\RoleBased\Index.cshtml" />
+    <Content Include="Views\RoleBased\Profile.cshtml" />
+    <Content Include="Views\RoleBased\UserDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RoleBased\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

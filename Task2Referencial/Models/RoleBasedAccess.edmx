@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MvcDatabaseModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MvcDatabaseModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="RoleTable">
           <Key>
             <PropertyRef Name="TRoleid" />
@@ -19,6 +19,7 @@
           <Property Name="TUserid" Type="int" Nullable="false" />
           <Property Name="TUsername" Type="varchar" MaxLength="20" />
           <Property Name="TRoleid" Type="int" />
+          <Property Name="TPassword" Type="varchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK__UserTable__TRole__1AD3FDA4">
           <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="0..1" />
@@ -40,8 +41,7 @@
             <End Role="UserTable" EntitySet="UserTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MvcDatabaseModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -61,6 +61,7 @@
           <Property Name="TUsername" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TRoleid" Type="Int32" />
           <NavigationProperty Name="RoleTable" Relationship="Self.FK__UserTable__TRole__1AD3FDA4" FromRole="UserTable" ToRole="RoleTable" />
+          <Property Name="TPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__UserTable__TRole__1AD3FDA4">
           <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="0..1" />
@@ -99,6 +100,7 @@
           <EntitySetMapping Name="UserTables">
             <EntityTypeMapping TypeName="MvcDatabaseModel2.UserTable">
               <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="TPassword" ColumnName="TPassword" />
                 <ScalarProperty Name="TUserid" ColumnName="TUserid" />
                 <ScalarProperty Name="TUsername" ColumnName="TUsername" />
                 <ScalarProperty Name="TRoleid" ColumnName="TRoleid" />

@@ -12,6 +12,8 @@ namespace Task2Referencial.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MvcDatabaseEntities5 : DbContext
     {
@@ -24,13 +26,23 @@ namespace Task2Referencial.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-
-        internal RoleUserConnect ValidateUser(string username, int? roleid)
-        {
-            throw new NotImplementedException();
-        }
-
+    
         public virtual DbSet<RoleTable> RoleTables { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
+
+        public virtual ObjectResult<RoleUserConnect> ValidateUser(string TUsername, string TPassword)
+        {
+            var usernameParameter = TUsername != null ?
+                new ObjectParameter("Username", TUsername) :
+                new ObjectParameter("Username", typeof(string));
+
+            var passwordParameter = TPassword != null ?
+                new ObjectParameter("Password", TPassword) :
+                new ObjectParameter("Password", typeof(string));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RoleUserConnect>("ValidateUser", usernameParameter, passwordParameter);
+        }
     }
+
+   
 }

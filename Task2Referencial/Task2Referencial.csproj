@@ -197,6 +197,9 @@
     <Compile Include="Models\UserTable.cs">
       <DependentUpon>RoleBasedAccess.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validate_User_Result.cs">
+      <DependentUpon>RoleBasedAccess.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,27 +297,27 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Trainee\Index.cshtml" />
-    <Content Include="Views\Training\Index.cshtml" />
-    <Content Include="Views\Trainee\Create.cshtml" />
-    <Content Include="Views\Training\Create.cshtml" />
-    <Content Include="Views\Training\Edit.cshtml" />
-    <Content Include="Views\Trainee\Edit.cshtml" />
-    <Content Include="Views\Trainee\Details.cshtml" />
-    <Content Include="Views\Training\Details.cshtml" />
-    <Content Include="Views\Trainee\Delete.cshtml" />
-    <Content Include="Views\Training\Delete.cshtml" />
-    <Content Include="Views\Login\LoginForm.cshtml" />
-    <Content Include="Views\Login\RegisterForm.cshtml" />
-    <Content Include="Views\Trainee\View1.cshtml" />
-    <Content Include="Views\Training\View1.cshtml" />
-    <Content Include="Views\RoleBased\Index.cshtml" />
-    <Content Include="Views\RoleBased\Profile.cshtml" />
-    <Content Include="Views\RoleBased\UserDetails.cshtml" />
+    <Content Include="Models\Views\Web.config" />
+    <Content Include="Models\Views\_ViewStart.cshtml" />
+    <Content Include="Models\Views\Shared\Error.cshtml" />
+    <Content Include="Models\Views\Shared\_Layout.cshtml" />
+    <Content Include="Models\Views\Trainee\Index.cshtml" />
+    <Content Include="Models\Views\Training\Index.cshtml" />
+    <Content Include="Models\Views\Trainee\Create.cshtml" />
+    <Content Include="Models\Views\Training\Create.cshtml" />
+    <Content Include="Models\Views\Training\Edit.cshtml" />
+    <Content Include="Models\Views\Trainee\Edit.cshtml" />
+    <Content Include="Models\Views\Trainee\Details.cshtml" />
+    <Content Include="Models\Views\Training\Details.cshtml" />
+    <Content Include="Models\Views\Trainee\Delete.cshtml" />
+    <Content Include="Models\Views\Training\Delete.cshtml" />
+    <Content Include="Models\Views\Login\LoginForm.cshtml" />
+    <Content Include="Models\Views\Login\RegisterForm.cshtml" />
+    <Content Include="Models\Views\Trainee\View1.cshtml" />
+    <Content Include="Models\Views\Training\View1.cshtml" />
+    <Content Include="Models\Views\RoleBased\Index.cshtml" />
+    <Content Include="Models\Views\RoleBased\Profile.cshtml" />
+    <Content Include="Models\Views\RoleBased\UserDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

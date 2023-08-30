@@ -30,10 +30,10 @@ namespace Task2Referencial.Controllers
         public ActionResult Index(UserTable user)
         {
             MvcDatabaseEntities5 usertabledatabase = new MvcDatabaseEntities5();
-            RoleUserConnect roleUser = new RoleUserConnect();
-           roleUser = usertabledatabase.ValidateUser(user.TUsername, user.TPassword).FirstOrDefault();  
+
+            Validate_User_Result roleUser = usertabledatabase.Validate_User(user.TUsername, user.TPassword).FirstOrDefault();  
             string message = string.Empty;
-            switch (roleUser.UserId.Value)
+            switch (roleUser.TUserid.Value)
             {
                 case -1:
                     message = "Username and/or password is incorrect.";

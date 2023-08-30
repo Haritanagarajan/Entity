@@ -1,4 +1,4 @@
-﻿﻿@model Task2Referencial.Models.UserTable
+﻿﻿@model Task2Referencial.Validate_User_Result
 
 @{
     Layout = null;
@@ -10,10 +10,35 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
 
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+            table th {
+                background-color: #F7F7F7;
+                color: #333;
+                font-weight: bold;
+            }
+
+            table th, table td {
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    @using (Html.BeginForm("Index", "RoleBased", FormMethod.Post))
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
@@ -44,15 +69,15 @@
                 </td>
             </tr>
             <tr>
-                    <td>
-                        Remember Me
-                    </td>
-                    <td>
-                        @Html.CheckBoxFor(m => m.RememberMe)
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                <td>
+                    Remember Me
+                </td>
+                <td>
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                </td>
+                <td>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <input type="submit" value="Submit" />
@@ -73,4 +98,3 @@
     }
 </body>
 </html>
-

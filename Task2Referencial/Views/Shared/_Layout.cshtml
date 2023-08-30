@@ -16,7 +16,7 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated&& User.IsInRole("Admin"))
             {
 
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
@@ -25,7 +25,7 @@
                     </ul>
                 </div>
             }
-            else
+            else 
             {
 
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">

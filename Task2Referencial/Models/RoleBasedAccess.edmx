@@ -33,6 +33,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Validate_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="MvcDatabaseModel2StoreContainer">
           <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
@@ -82,7 +86,15 @@
             <End Role="RoleTable" EntitySet="RoleTables" />
             <End Role="UserTable" EntitySet="UserTables" />
           </AssociationSet>
+          <FunctionImport Name="Validate_User" ReturnType="Collection(MvcDatabaseModel2.Validate_User_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="Validate_User_Result">
+          <Property Type="Int32" Name="TUserid" Nullable="true" />
+          <Property Type="String" Name="Roles" Nullable="true" MaxLength="20" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -107,6 +119,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Validate_User" FunctionName="MvcDatabaseModel2.Store.Validate_User">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MvcDatabaseModel2.Validate_User_Result">
+                <ScalarProperty Name="TUserid" ColumnName="TUserid" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -10,16 +10,10 @@
 namespace Task2Referencial.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UserTable
+    public partial class Validate_User_Result
     {
-        public int TUserid { get; set; }
-        public string TUsername { get; set; }
-        public Nullable<int> TRoleid { get; set; }
-        public string TPassword { get; set; }
-    
-        public virtual RoleTable RoleTable { get; set; }
-        public bool RememberMe { get; internal set; }
+        public Nullable<int> TUserid { get; set; }
+        public string Roles { get; set; }
     }
 }

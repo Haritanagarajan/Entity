@@ -29,20 +29,18 @@ namespace Task2Referencial.Models
     
         public virtual DbSet<RoleTable> RoleTables { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
-
-        public virtual ObjectResult<RoleUserConnect> ValidateUser(string TUsername, string TPassword)
+    
+        public virtual ObjectResult<Validate_User_Result> Validate_User(string username, string password)
         {
-            var usernameParameter = TUsername != null ?
-                new ObjectParameter("Username", TUsername) :
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
                 new ObjectParameter("Username", typeof(string));
-
-            var passwordParameter = TPassword != null ?
-                new ObjectParameter("Password", TPassword) :
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RoleUserConnect>("ValidateUser", usernameParameter, passwordParameter);
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Validate_User_Result>("Validate_User", usernameParameter, passwordParameter);
         }
     }
-
-   
 }

@@ -16,7 +16,7 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @if (User.Identity.IsAuthenticated&& User.IsInRole("Admin"))
+            @*@if (User.Identity.IsAuthenticated)
             {
 
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
@@ -27,14 +27,13 @@
             }
             else 
             {
-
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Trainee", "Index", "Trainee", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Trainer", "Index", "Training", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </div>
-            }
+            }*@
 
         </div>
     </nav>

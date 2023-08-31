@@ -12,6 +12,8 @@ using Task2Referencial.Models;
 namespace Task2Referencial.Controllers
 {
     [Authorize]
+    [AllowAnonymous]
+
     //database   MvcDatabaseEntities1 
     //Model Trainees
     public class TraineeController : Controller
@@ -30,7 +32,7 @@ namespace Task2Referencial.Controllers
         // GET: Trainee
 
         [Authorize(Roles = "Admin")]
-
+        [Authorize(Roles = "Trainer")]
         public ActionResult Index()
         {
             List<Trainee> trainees = MvcDatabaseEntities4.Trainees.ToList();

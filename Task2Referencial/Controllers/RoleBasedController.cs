@@ -17,6 +17,7 @@ namespace Task2Referencial.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [Authorize]
         public new ActionResult Profile()
         {
@@ -38,12 +39,9 @@ namespace Task2Referencial.Controllers
                 case -1:
                     message = "Username and/or password is incorrect.";
                     break;
-                case -2:
-                    message = "Account has not been activated.";
-                    break;
                 default:
                     
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.TUsername, DateTime.Now, DateTime.Now.AddMinutes(30), user.RememberMe,roleUser.Roles, FormsAuthentication.FormsCookiePath);
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.TUsername, DateTime.Now, DateTime.Now.AddMinutes(30),false,roleUser.Roles, FormsAuthentication.FormsCookiePath);
                     string hash = FormsAuthentication.Encrypt(ticket);
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
                 
@@ -59,7 +57,6 @@ namespace Task2Referencial.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult UserDetails()
         {
             MvcDatabaseEntities5 usertabledatabase = new MvcDatabaseEntities5();

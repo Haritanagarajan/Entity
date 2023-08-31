@@ -1,4 +1,4 @@
-﻿﻿@model Task2Referencial.Validate_User_Result
+﻿﻿@model Task2Referencial.Models.UserTable
 
 @{
     Layout = null;
@@ -38,7 +38,7 @@
     </style>
 </head>
 <body>
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    @using (Html.BeginForm("Index", "RoleBased", FormMethod.Post))
     {
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
@@ -68,16 +68,7 @@
                     @Html.ValidationMessageFor(m => m.TPassword, "", new { @class = "error" })
                 </td>
             </tr>
-            <tr>
-                <td>
-                    Remember Me
-                </td>
-                <td>
-                    @Html.CheckBoxFor(m => m.RememberMe)
-                </td>
-                <td>
-                </td>
-            </tr>
+          
             <tr>
                 <td>
                     <input type="submit" value="Submit" />

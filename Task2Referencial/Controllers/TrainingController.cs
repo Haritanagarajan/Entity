@@ -9,12 +9,15 @@ using Task2Referencial.Models;
 namespace Task2Referencial.Controllers
 {
     [Authorize]
+    [AllowAnonymous]
 
     //database MvcDatabaseEntities1
     //model  Trainees
     public class TrainingController : Controller
     {
         MvcDatabaseEntities4 MvcDatabaseEntities4 = new MvcDatabaseEntities4();
+
+        [Authorize(Roles = "Trainee")]
 
         public ActionResult View1()
         {
@@ -23,6 +26,7 @@ namespace Task2Referencial.Controllers
             return View(training);
         }
         // GET: Training
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             List<Training> training = MvcDatabaseEntities4.Trainings.ToList();

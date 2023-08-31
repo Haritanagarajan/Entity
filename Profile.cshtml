@@ -2,13 +2,7 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Profile</title>
-</head>
 <body>
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
           media="screen" />
@@ -24,19 +18,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div id="Menu1">
                     <ul class="nav navbar-nav">
+                        <li><a class="selected" href="#">Home</a></li>
                         @if (User.IsInRole("Admin"))
                         {
-                        <li>@Html.ActionLink("Trainee Details", "Index", "Trainee")</li>
-                        <li>@Html.ActionLink("Training Details", "Index", "Training")</li>
+                            <li>@Html.ActionLink("User Details", "Index", "Trainee")</li>
                         }
-                        @if (User.IsInRole("Trainer"))
-                        {
-                        <li>@Html.ActionLink("Trainee Details", "Index", "Trainee")</li>
-                        }
-                        @if (User.IsInRole("Trainee"))
-                        {
-                        <li>@Html.ActionLink("Trainer Details", "View1", "Training")</li>
-                        }
+                      
                         <li>@Html.ActionLink("Logout", "Logout", "RoleBased")</li>
                     </ul>
                 </div>
@@ -48,7 +35,7 @@
         <b>@HttpContext.Current.User.Identity.Name</b>
         <br />
         <br />
-        @using (Html.BeginForm("Logout", "RoleBased", FormMethod.Post))
+        @using (Html.BeginForm("Logout", "RoleBsed", FormMethod.Post))
         {
 
         }
@@ -56,4 +43,4 @@
     <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
     <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
 </body>
-</html>
+

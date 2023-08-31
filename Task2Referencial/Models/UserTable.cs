@@ -20,6 +20,5 @@ namespace Task2Referencial.Models
         public string TPassword { get; set; }
     
         public virtual RoleTable RoleTable { get; set; }
-        public bool RememberMe { get; internal set; }
     }
 }
